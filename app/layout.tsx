@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </Link>
           <nav className="space-x-6 text-base">
             <Link href="/" className="hover:underline">Home</Link>
-            <Link href="/wall" className="hover:underline">Reflection Wall</Link>
+            <Link href="/wall" className="hover:underline">Reflection</Link>
             <Link href="/blessing" className="hover:underline">Meditation</Link>
             <Link href="/archive" className="hover:underline">Archives</Link>
           </nav>

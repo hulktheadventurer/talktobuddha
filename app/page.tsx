@@ -11,7 +11,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(false);
   const [showDonateModal, setShowDonateModal] = useState(false);
   const [posted, setPosted] = useState(false);
-  const responseEndRef = useRef<HTMLDivElement | null>(null);
+  const chatBoxRef = useRef<HTMLDivElement | null>(null);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -69,7 +69,9 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    responseEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatBoxRef.current) {
+      chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+    }
   }, [thread]);
 
   return (
@@ -79,6 +81,7 @@ export default function HomePage() {
       </h2>
 
       <div
+        ref={chatBoxRef}
         className={`bg-yellow-50 shadow-xl rounded-2xl p-6 border border-yellow-200 max-h-[60vh] overflow-y-auto flex flex-col ${
           thread.length === 0 ? 'justify-center min-h-[120px]' : 'space-y-3'
         }`}
@@ -105,8 +108,6 @@ export default function HomePage() {
         {loading && (
           <div className="italic text-yellow-600 self-start">The Buddha is listening...</div>
         )}
-
-        <div ref={responseEndRef} />
       </div>
 
       <form
